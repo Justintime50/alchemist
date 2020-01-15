@@ -13,6 +13,8 @@ Automate updating Homebrew with one easy script.
 
 ## Usage
 
+Brew Update automates the entire Homebrew update process including updating available taps and formulas, upgrading packages, upgrading cask packages, cleaning up old/stale taps and formulas, and running brew doctor. It saves the output to a log file on each run found at `~/brew-update` (this can be customized).
+
 This script can either be run manually or via a cron:
 
 ### Manually
