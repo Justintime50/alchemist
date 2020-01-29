@@ -1,4 +1,4 @@
 language: bash
 
 script: 
-    - shellcheck update.sh
+    - shellcheck brew-update.sh

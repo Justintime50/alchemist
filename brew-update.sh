@@ -5,6 +5,7 @@ LOG_LIFE="30"
 LOCATION="$HOME/brew-update"
 
 mkdir -p "$LOCATION"
+mkdir -p "$LOCATION"/logs
 
 {
     brew update
@@ -14,4 +15,4 @@ mkdir -p "$LOCATION"
     brew doctor
 } 2>&1 | tee "$LOCATION"/logs/"$DATE".log
 
-find "$LOCATION" -mindepth 1 -mtime +"$LOG_LIFE" -delete
+find "$LOCATION"/logs -mindepth 1 -mtime +"$LOG_LIFE" -delete
