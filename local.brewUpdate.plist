@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+		<key>Label</key>
+		<string>local.brewUpdate.plist</string>
+		<key>Program</key>
+		<string>/path/to/brew-update.sh</string>
+        <key>RunAtLoad</key>
+		<true/>
+		<key>StandardErrorPath</key>
+		<string>/path/to/log.err</string>
+		<key>StandardOutPath</key>
+		<string>/path/to/log.out</string>
+	</dict>
+</plist>
