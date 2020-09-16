@@ -17,7 +17,7 @@ Brew Update automates the entire Homebrew update process including updating avai
 
 ```bash
 # Setup the tap
-brew tap justintime50/justintime50
+brew tap justintime50/formulas
 
 # Install the tool
 brew install brew_update
