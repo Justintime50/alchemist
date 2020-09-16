@@ -10,7 +10,7 @@ mkdir -p "$LOCATION"/logs
 {
     brew update
     brew upgrade
-    brew cask upgrade
+    brew upgrade --cask
     brew cleanup
     brew doctor
 } 2>&1 | tee "$LOCATION"/logs/"$DATE".log
