@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DATE=$(date +'%m-%d-%Y')
-LOG_LIFE="30" 
+LOG_LIFE="90" 
 LOCATION="$HOME/brew-update"
 
 mkdir -p "$LOCATION"

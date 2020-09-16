@@ -1,6 +1,1 @@
 .DS_Store
-    .idea
-    .env
-    db
-    *.sql
-    .init-db
