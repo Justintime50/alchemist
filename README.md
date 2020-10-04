@@ -7,7 +7,7 @@ Automate the entire Homebrew update process with just one command.
 [![Build Status](https://travis-ci.com/Justintime50/brew-update.svg?branch=master)](https://travis-ci.com/Justintime50/brew-update)
 [![Licence](https://img.shields.io/github/license/justintime50/brew-update)](LICENSE)
 
-<img src="assets/showcase.gif">
+<img src="assets/showcase.gif" alt="Showcase">
 
 </div>
 
@@ -20,21 +20,11 @@ Brew Update automates the entire Homebrew update process including updating avai
 brew tap justintime50/formulas
 
 # Install the tool
-brew install brew_update
+brew install brew-update
 ```
 
 ## Usage
 
 ```bash
 brew-update
-```
-
-### Cron
-
-Ensure your path is accessible via the cron.
-
-```bash
-crontab -e
-
-0 1 * * * brew-update
 ```
