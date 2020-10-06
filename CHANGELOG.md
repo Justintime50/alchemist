@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v1.2.0 (2020-10-05)
+
+* Refactored code to use functions
+* Added parameters to allow for a custom log path and log life in days
+
 ## v1.1.0 (2020-09-16)
 
 * Now installable via Homebrew
