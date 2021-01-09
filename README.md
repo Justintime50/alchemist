@@ -4,7 +4,7 @@
 
 Automate the entire Homebrew update process with just one command.
 
-[![Build Status](https://travis-ci.com/Justintime50/brew-update.svg?branch=master)](https://travis-ci.com/Justintime50/brew-update)
+[![Build](https://github.com/Justintime50/brew-update/workflows/build/badge.svg)](https://github.com/Justintime50/brew-update/actions)
 [![Licence](https://img.shields.io/github/license/justintime50/brew-update)](LICENSE)
 
 <img src="assets/showcase.gif" alt="Showcase">

@@ -1,4 +1,0 @@
-language: bash
-
-script: 
-    - shellcheck src/*.sh
