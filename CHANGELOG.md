@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.0.0 (TODO)
+
+* Renamed `brew-update` to `alchemist`
+* Consolidated `brew-backup` tool into Alchemist, now you can specify the functionality by passing a flag (eg: `--update`, `--backup`)
+* Rewrote the tool from shell scripts into Golang
+* Removed the reliance on system tools like `sed` for much safer and compatible functionality
+
 ## v1.2.1 (2021-01-09)
 
 * Switching from Travis-CI to GitHub Actions

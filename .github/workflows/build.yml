@@ -1,5 +1,3 @@
-name: build
-
 on: [push, pull_request]
 
 jobs:
@@ -12,4 +10,30 @@ jobs:
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@1.0.0
         with:
-          scandir: "src"
+          scandir: "legacy"
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Run Golangci Linter
+        uses: golangci/golangci-lint-action@v2
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: TODO
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        go: [1.14, 1.15]
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Build
+        run: make build
