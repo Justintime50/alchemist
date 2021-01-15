@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/Justintime50/alchemist/src/backup"
 	"github.com/Justintime50/alchemist/src/update"
+	"os"
 )
 
 func main() {
@@ -14,14 +15,13 @@ func main() {
 	flag.Parse()
 
 	if *brewUpdate {
-		update.UpdateBrew()
+		update.Brew()
 		return
 	} else if *brewBackup {
-		backup.BackupBrew()
+		backup.Brew()
 		return
 	}
 
-	// TODO: Add logging
-
-	fmt.Printf("%s\n", "No action taken as no flag was passed.")
+	fmt.Println("No action taken as no flag was passed.")
+	os.Exit(1)
 }
