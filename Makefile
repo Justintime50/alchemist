@@ -13,11 +13,15 @@ clean:
 
 ## build - Build the project
 build:
-	go build
+	go build -o dist/alchemist
 
 ## test - Test the project
 test:
-	go test -v
+	go clean -testcache && go test ./...
+
+## coverage - Get test coverage
+coverage: 
+	go clean -testcache && go test ./... -coverprofile=covprofile
 
 ## lint - Lint the project
 lint:
