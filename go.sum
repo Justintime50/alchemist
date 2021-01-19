@@ -1,4 +1,4 @@
-github.com/justintime50/mockcmd v0.1.0 h1:C+6dYJ5ZqNINo1ybG1fYy/mFYi4d8q4chBhfan400pA=
-github.com/justintime50/mockcmd v0.1.0/go.mod h1:bW9UboX6hpqYbhOjsnSCqX1T9+L6clWJXYXbWsSVM1c=
+github.com/justintime50/mockcmd v0.2.0 h1:aVKzj3e18//2npigGQhcEueJcw74aQoS1BJdRefjSuU=
+github.com/justintime50/mockcmd v0.2.0/go.mod h1:bW9UboX6hpqYbhOjsnSCqX1T9+L6clWJXYXbWsSVM1c=
 github.com/natefinch/lumberjack v2.0.0+incompatible h1:4QJd3OLAMgj7ph+yZTuX13Ld4UpgHp07nNdFX7mqFfM=
 github.com/natefinch/lumberjack v2.0.0+incompatible/go.mod h1:Wi9p2TTF5DG5oU+6YfsmYQpsTIOm0B1VNzQg9Mw6nPk=
