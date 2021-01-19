@@ -67,6 +67,28 @@ Options:
         Update your Homebrew instance.
 ```
 
+## Development
+
+```bash
+# Build the project
+make build
+
+# Install the project globally from source
+make install
+
+# Clean the executables
+make clean
+
+# Test the project
+make test
+
+## Get test coverage
+make coverage
+
+# Lint the project (requires golangci-lint be installed)
+make lint
+```
+
 ## Attribution
 
 * Icons made by <a href="https://www.flaticon.com/free-icon/chemist_2646063?term=chemist&related_id=2646063" title="ultimatearm">ultimatearm</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
