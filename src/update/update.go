@@ -52,7 +52,7 @@ func setupDir() string {
 		panic(err)
 	}
 	alchemistUpdateDir := homeDir + "/alchemist/update"
-	os.MkdirAll(alchemistUpdateDir, os.ModePerm)
+	_ = os.MkdirAll(alchemistUpdateDir, os.ModePerm)
 	return alchemistUpdateDir
 }
 
@@ -76,7 +76,7 @@ func brewUpdate(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println(fmt.Sprintf("Error while updating brew: %s.", err))
+		fmt.Printf("Error while updating brew: %s.\n", err)
 		return nil, err
 	}
 
@@ -91,7 +91,7 @@ func brewUpgrade(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println(fmt.Sprintf("Error while upgrading brew packages: %s.", err))
+		fmt.Printf("Error while upgrading brew packages: %s.\n", err)
 		return nil, err
 	}
 
@@ -106,7 +106,7 @@ func brewUpgradeCasks(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println(fmt.Sprintf("Error while upgrading brew casks: %s.", err))
+		fmt.Printf("Error while upgrading brew casks: %s.\n", err)
 		return nil, err
 	}
 
@@ -121,7 +121,7 @@ func brewCleanup(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println(fmt.Sprintf("Error while cleaning brew: %s.", err))
+		fmt.Printf("Error while cleaning brew: %s.\n", err)
 		return nil, err
 	}
 
@@ -136,7 +136,7 @@ func brewDoctor(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println(fmt.Sprintf("Error while checking with brew doctor: %s.", err))
+		fmt.Printf("Error while checking with brew doctor: %s.\n", err)
 		return nil, err
 	}
 

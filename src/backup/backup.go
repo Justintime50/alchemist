@@ -25,7 +25,7 @@ func Brew() {
 		panic(err)
 	}
 	alchemistBackupDir := homeDir + "/alchemist/backup"
-	os.MkdirAll(alchemistBackupDir, os.ModePerm)
+	_ = os.MkdirAll(alchemistBackupDir, os.ModePerm)
 	createScriptFile(packages, alchemistBackupDir+"/restore-brew-packages.sh")
 	createScriptFile(casks, alchemistBackupDir+"/restore-brew-casks.sh")
 
@@ -40,7 +40,7 @@ func retrieveBrewList(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println(fmt.Sprintf("Error while retrieving brew list: %s.", err))
+		fmt.Printf("Error while retrieving brew list: %s.\n", err)
 		return nil, err
 	}
 
@@ -71,7 +71,7 @@ func retrieveBrewCaskList(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error)
 	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println(fmt.Sprintf("Error while retrieving brew cask list: %s.", err))
+		fmt.Printf("Error while retrieving brew cask list: %s.\n", err)
 		return nil, err
 	}
 
@@ -104,7 +104,7 @@ func createScriptFile(commands []string, filename string) {
 
 	for i := range commands {
 		command := commands[i]
-		packageFile.WriteString(fmt.Sprintf("%s\n", command))
+		_, _ = packageFile.WriteString(fmt.Sprintf("%s\n", command))
 	}
 
 	err = exec.Command("chmod", "+x", filename).Run()
