@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v2.0.0 (2021-01-18)
+
+* Renamed `brew-update` to `alchemist`
+* Consolidated `brew-backup` tool into Alchemist, now you can specify the functionality by passing a flag (eg: `--update`, `--backup`)
+* Rewrote the tool from shell scripts into Golang
+* Removed the reliance on system tools like `sed` for much safer and compatible functionality
+* Added proper logging framework with automatic rollover (90 day log life, 1mb file size, 5 logs max)
+* Added unit tests
+* Auto releasing via `goreleaser`
+
 ## v1.2.1 (2021-01-09)
 
 * Switching from Travis-CI to GitHub Actions

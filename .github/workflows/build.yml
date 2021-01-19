@@ -1,5 +1,3 @@
-name: build
-
 on: [push, pull_request]
 
 jobs:
@@ -12,4 +10,47 @@ jobs:
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@1.0.0
         with:
-          scandir: "src"
+          scandir: "legacy"
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Run Golangci Linter
+        uses: golangci/golangci-lint-action@v2
+  test:
+    name: Test with Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.15"
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Run unit tests
+        run: |
+          go test -race -covermode atomic -coverprofile=covprofile ./...
+      - name: Install goveralls
+        env:
+          GO111MODULE: off
+        run: go get github.com/mattn/goveralls
+      - name: Send coverage
+        env:
+          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: goveralls -coverprofile=covprofile -service=github
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        go: [1.14, 1.15]
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Build
+        run: make build
