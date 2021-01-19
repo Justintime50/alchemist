@@ -1,0 +1,15 @@
+builds:
+  - goos:
+      - linux
+      - darwin
+
+brews:
+  - tap:
+      owner: Justintime50
+      name: homebrew-formulas
+    folder: formula
+    homepage: "https://github.com/Justintime50/alchemist"
+    description: "Update, backup, and administer your Homebrew instance"
+    commit_author:
+      name: Justintime50
+      email: justinpaulhammond@gmail.com
