@@ -4,7 +4,7 @@
 
 Update, backup, and administer your Homebrew instance.
 
-[![Build](https://github.com/Justintime50/alchemist/workflows/build/badge.svg)](https://github.com/Justintime50/alchemist/actions)
+[![Build Status](https://github.com/Justintime50/alchemist/workflows/build/badge.svg)](https://github.com/Justintime50/alchemist/actions)
 [![Coverage Status](https://coveralls.io/repos/github/Justintime50/alchemist/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/alchemist?branch=main)
 [![Licence](https://img.shields.io/github/license/justintime50/alchemist)](LICENSE)
 
