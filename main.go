@@ -8,8 +8,8 @@ import (
 	"os"
 )
 
+// main function that accepts CLI args to invoke different functionality
 func main() {
-	// main function that accepts CLI args to invoke different functionality
 	brewUpdate := flag.Bool("update", false, "Update your Homebrew instance.")
 	brewBackup := flag.Bool("backup", false, "Backup your Homebrew instance.")
 	flag.Parse()

@@ -11,6 +11,13 @@ import (
 
 // TODO: Mock and test the `createScriptFile()` function
 
+func TestSetupDir(t *testing.T) {
+	setupDir := setupDir()
+	if setupDir == "/alchemist/backup" {
+		t.Errorf("setupDir did not concatenate the homedir to the app path, got: %s", setupDir)
+	}
+}
+
 func TestGeneratePackageScriptCommands(t *testing.T) {
 	mockPackageList := bytes.NewBufferString("package1\npackage2")
 	wanted := []string{"#!/bin/sh", "brew install package1", "brew install package2"}
