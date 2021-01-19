@@ -6,14 +6,19 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+
+	"github.com/justintime50/mockcmd/mockcmd"
 )
 
 // Brew backs up your Homebrew instance
 func Brew() {
 	fmt.Println("Alchemist is backing up brew...")
 
-	packages := generatePackageScriptCommands()
-	casks := generateCaskScriptCommands()
+	packageList, _ := retrieveBrewList(exec.Command)
+	packages := generatePackageScriptCommands(packageList)
+
+	caskList, _ := retrieveBrewCaskList(exec.Command)
+	casks := generateCaskScriptCommands(caskList)
 
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
@@ -27,19 +32,25 @@ func Brew() {
 	fmt.Println("Alchemist is finished backing up brew!")
 }
 
-// generatePackageScriptCommands creates a script file containing commands to install all your brew packages
-func generatePackageScriptCommands() []string {
-	cmd := exec.Command("brew", "list", "--formula")
-	var out bytes.Buffer
-	cmd.Stdout = &out
-
+// retrieveBrewList retrieves the list of brew packages from Homebrew
+func retrieveBrewList(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
+	cmd := cmdContext("brew", "list", "--formula")
+	var outb bytes.Buffer
+	cmd.Stdout = &outb
+	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
-		os.Exit(1)
+		fmt.Println(fmt.Sprintf("Error while retrieving brew list: %s.", err))
+		return nil, err
 	}
 
-	outStrings := out.String()
-	packageList := strings.Fields(outStrings)
+	return &outb, nil
+}
+
+// generatePackageScriptCommands creates a script file containing commands to install all your brew packages
+func generatePackageScriptCommands(brewPackageList *bytes.Buffer) []string {
+	brewPackageListString := brewPackageList.String()
+	packageList := strings.Fields(brewPackageListString)
 
 	var packageListArray []string
 	packageListArray = append(packageListArray, "#!/bin/sh")
@@ -52,19 +63,25 @@ func generatePackageScriptCommands() []string {
 	return packageListArray
 }
 
-// generateCaskScriptCommands creates a script file containing commands to install all your brew casks
-func generateCaskScriptCommands() []string {
-	cmd := exec.Command("brew", "list", "--cask")
-	var out bytes.Buffer
-	cmd.Stdout = &out
-
+// retrieveBrewCaskList retrieves the list of brew casks from Homebrew
+func retrieveBrewCaskList(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
+	cmd := cmdContext("brew", "list", "--cask")
+	var outb bytes.Buffer
+	cmd.Stdout = &outb
+	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
-		os.Exit(1)
+		fmt.Println(fmt.Sprintf("Error while retrieving brew cask list: %s.", err))
+		return nil, err
 	}
 
-	outStrings := out.String()
-	caskList := strings.Fields(outStrings)
+	return &outb, nil
+}
+
+// generateCaskScriptCommands creates a script file containing commands to install all your brew casks
+func generateCaskScriptCommands(brewCaskList *bytes.Buffer) []string {
+	brewCaskListString := brewCaskList.String()
+	caskList := strings.Fields(brewCaskListString)
 
 	var caskListArray []string
 	caskListArray = append(caskListArray, "#!/bin/sh")

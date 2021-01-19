@@ -7,11 +7,12 @@ import (
 	"github.com/justintime50/mockcmd/mockcmd"
 )
 
+// TODO: Test `Brew()` and that each function is called correctly
+
 func TestSetupDir(t *testing.T) {
-	homeDir := "testing"
 	setupDir := setupDir()
-	if setupDir != homeDir {
-		t.Errorf("setupDir did not build a proper alchemistUpdateDir, got: %s, want: %s.", setupDir, homeDir)
+	if setupDir == "/alchemist/update" {
+		t.Errorf("setupDir did not concatenate the homedir to the app path, got: %s", setupDir)
 	}
 }
 

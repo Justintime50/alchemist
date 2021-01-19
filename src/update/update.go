@@ -19,28 +19,27 @@ func Brew() {
 	alchemistUpdateDir := setupDir()
 
 	// TODO: Can we log to a file and print to console in one command for each of these?
-	// TODO: Add logging for errors too, only successes get logged currently
 	setupLogging(alchemistUpdateDir)
 
 	update, _ := brewUpdate(exec.Command)
 	fmt.Println("Alchemist has updated brew!")
-	log.Printf("brew update: %s\n", update.String())
+	log.Printf("brew update: %s", update.String())
 
 	upgrade, _ := brewUpgrade(exec.Command)
 	fmt.Println("Alchemist has upgraded brew packages!")
-	log.Printf("brew upgrade: %s\n", upgrade.String())
+	log.Printf("brew upgrade: %s", upgrade.String())
 
 	upgradeCasks, _ := brewUpgradeCasks(exec.Command)
 	fmt.Println("Alchemist has upgraded brew casks!")
-	log.Printf("brew upgrade --cask: %s\n", upgradeCasks.String())
+	log.Printf("brew upgrade --cask: %s", upgradeCasks.String())
 
 	cleanup, _ := brewCleanup(exec.Command)
 	fmt.Println("Alchemist has cleaned up brew!")
-	log.Printf("brew cleanup: %s\n", cleanup.String())
+	log.Printf("brew cleanup: %s", cleanup.String())
 
 	doctor, _ := brewDoctor(exec.Command)
 	fmt.Println("Alchemist has checked with brew doctor:")
-	log.Printf("brew doctor: %s\n", doctor.String())
+	log.Printf("brew doctor: %s", doctor.String())
 	fmt.Println(doctor)
 
 	fmt.Println("Alchemist is finished updating brew!")
@@ -74,6 +73,7 @@ func brewUpdate(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd := cmdContext("brew", "update")
 	var outb bytes.Buffer
 	cmd.Stdout = &outb
+	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println(fmt.Sprintf("Error while updating brew: %s.", err))
@@ -88,6 +88,7 @@ func brewUpgrade(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd := cmdContext("brew", "upgrade")
 	var outb bytes.Buffer
 	cmd.Stdout = &outb
+	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println(fmt.Sprintf("Error while upgrading brew packages: %s.", err))
@@ -102,6 +103,7 @@ func brewUpgradeCasks(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd := cmdContext("brew", "upgrade", "--cask")
 	var outb bytes.Buffer
 	cmd.Stdout = &outb
+	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println(fmt.Sprintf("Error while upgrading brew casks: %s.", err))
@@ -116,6 +118,7 @@ func brewCleanup(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd := cmdContext("brew", "cleanup")
 	var outb bytes.Buffer
 	cmd.Stdout = &outb
+	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println(fmt.Sprintf("Error while cleaning brew: %s.", err))
@@ -130,6 +133,7 @@ func brewDoctor(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
 	cmd := cmdContext("brew", "doctor")
 	var outb bytes.Buffer
 	cmd.Stdout = &outb
+	cmd.Stderr = &outb
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println(fmt.Sprintf("Error while checking with brew doctor: %s.", err))
