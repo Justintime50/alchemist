@@ -48,7 +48,13 @@ brew install alchemist
 
 ## Usage
 
-Alchemist saves logs to `~/alchemist`. Logs by default are kept on the system for `90 days` and are automatically rotated for you once their size exceeds 1mb or the logs become older than 90 days.
+**Logs**
+
+Alchemist saves logs to `~/alchemist/update/alchemist-update.log`. Logs by default are kept on the system for `90 days` and are automatically rotated for you once their size exceeds 1mb or the logs become older than 90 days.
+
+**Restore Scripts**
+
+Scripts generated from the backup functionality of Alchemist live at `~/alchemist/backup/restore-brew-package.sh`. Simply make the script executable and run it to reinstall all of your brew packages (eg: `./restore-brew-package.sh`).
 
 ```
 Usage:
