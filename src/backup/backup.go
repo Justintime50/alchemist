@@ -20,16 +20,22 @@ func Brew() {
 	caskList, _ := retrieveBrewCaskList(exec.Command)
 	casks := generateCaskScriptCommands(caskList)
 
+	alchemistBackupDir := setupDir()
+	createScriptFile(packages, alchemistBackupDir+"/restore-brew-packages.sh")
+	createScriptFile(casks, alchemistBackupDir+"/restore-brew-casks.sh")
+
+	fmt.Println("Alchemist is finished backing up brew!")
+}
+
+// setupDir gets the user's home dir and appends the alchemist dir to it
+func setupDir() string {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
 		panic(err)
 	}
 	alchemistBackupDir := homeDir + "/alchemist/backup"
 	_ = os.MkdirAll(alchemistBackupDir, os.ModePerm)
-	createScriptFile(packages, alchemistBackupDir+"/restore-brew-packages.sh")
-	createScriptFile(casks, alchemistBackupDir+"/restore-brew-casks.sh")
-
-	fmt.Println("Alchemist is finished backing up brew!")
+	return alchemistBackupDir
 }
 
 // retrieveBrewList retrieves the list of brew packages from Homebrew
