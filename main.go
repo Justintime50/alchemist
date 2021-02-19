@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/Justintime50/alchemist/src/backup"
-	"github.com/Justintime50/alchemist/src/update"
 	"os"
+
+	"github.com/Justintime50/alchemist/src/brew"
 )
 
 // main function that accepts CLI args to invoke different functionality
@@ -14,11 +14,12 @@ func main() {
 	brewBackup := flag.Bool("backup", false, "Backup your Homebrew instance.")
 	flag.Parse()
 
+	// TODO: Check what OS is running and split macOS/Linux and Windows here
 	if *brewUpdate {
-		update.Brew()
+		brew.Update()
 		return
 	} else if *brewBackup {
-		backup.Brew()
+		brew.Backup()
 		return
 	}
 

@@ -1,56 +1,41 @@
-package backup
+package brew
 
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"strings"
-
-	"github.com/justintime50/mockcmd/mockcmd"
 )
 
-// Brew backs up your Homebrew instance
-func Brew() {
+// Backup backs up your Homebrew instance
+func Backup() {
+	action := "backup"
+	alchemistBackupDir := setupDir(action)
+	setupLogging(alchemistBackupDir, action)
+
 	fmt.Println("Alchemist is backing up brew...")
 
-	packageList, _ := retrieveBrewList(exec.Command)
+	brewDoctor, brewDoctorErr := runCommand(exec.Command, "brew", []string{"doctor"})
+	if brewDoctor != nil {
+		log.Printf("brew doctor: %s", brewDoctor)
+	} else {
+		fmt.Println("Alchemist checked with brew doctor, you need to fix your Homebrew first before it can be backed up!")
+		log.Printf("brew update: %s", brewDoctorErr)
+		os.Exit(1)
+	}
+
+	packageList, _ := runCommand(exec.Command, "brew", []string{"list", "--formula"})
 	packages := generatePackageScriptCommands(packageList)
 
-	caskList, _ := retrieveBrewCaskList(exec.Command)
+	caskList, _ := runCommand(exec.Command, "brew", []string{"list", "--cask"})
 	casks := generateCaskScriptCommands(caskList)
 
-	alchemistBackupDir := setupDir()
 	createScriptFile(packages, alchemistBackupDir+"/restore-brew-packages.sh")
 	createScriptFile(casks, alchemistBackupDir+"/restore-brew-casks.sh")
 
 	fmt.Println("Alchemist is finished backing up brew!")
-}
-
-// setupDir gets the user's home dir and appends the alchemist dir to it
-func setupDir() string {
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		panic(err)
-	}
-	alchemistBackupDir := homeDir + "/alchemist/backup"
-	_ = os.MkdirAll(alchemistBackupDir, os.ModePerm)
-	return alchemistBackupDir
-}
-
-// retrieveBrewList retrieves the list of brew packages from Homebrew
-func retrieveBrewList(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
-	cmd := cmdContext("brew", "list", "--formula")
-	var outb bytes.Buffer
-	cmd.Stdout = &outb
-	cmd.Stderr = &outb
-	err := cmd.Run()
-	if err != nil {
-		fmt.Printf("Error while retrieving brew list: %s.\n", err)
-		return nil, err
-	}
-
-	return &outb, nil
 }
 
 // generatePackageScriptCommands creates a script file containing commands to install all your brew packages
@@ -69,21 +54,6 @@ func generatePackageScriptCommands(brewPackageList *bytes.Buffer) []string {
 	return packageListArray
 }
 
-// retrieveBrewCaskList retrieves the list of brew casks from Homebrew
-func retrieveBrewCaskList(cmdContext mockcmd.ExecContext) (*bytes.Buffer, error) {
-	cmd := cmdContext("brew", "list", "--cask")
-	var outb bytes.Buffer
-	cmd.Stdout = &outb
-	cmd.Stderr = &outb
-	err := cmd.Run()
-	if err != nil {
-		fmt.Printf("Error while retrieving brew cask list: %s.\n", err)
-		return nil, err
-	}
-
-	return &outb, nil
-}
-
 // generateCaskScriptCommands creates a script file containing commands to install all your brew casks
 func generateCaskScriptCommands(brewCaskList *bytes.Buffer) []string {
 	brewCaskListString := brewCaskList.String()
@@ -93,7 +63,7 @@ func generateCaskScriptCommands(brewCaskList *bytes.Buffer) []string {
 	caskListArray = append(caskListArray, "#!/bin/sh")
 	for i := range caskList {
 		caskName := caskList[i]
-		brewInstallCommand := fmt.Sprintf("%s %s", "brew cask install", caskName)
+		brewInstallCommand := fmt.Sprintf("%s %s", "brew install --cask", caskName)
 		caskListArray = append(caskListArray, brewInstallCommand)
 	}
 

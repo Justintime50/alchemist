@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.1.0 (2021-02-18)
+
+* Completely overhauled the app's modules by combining update/backup modules into a new `brew` module in preperation for adding `Choco` support on Windows
+* Cut out a lot of duplicate code
+* Bug fix for the `brew cask` install command on backup scripts
+* Bug fix for printing `nil` to console instead of stderr (closes #3)
+
 ## v2.0.0 (2021-01-18)
 
 * Renamed `brew-update` to `alchemist`
