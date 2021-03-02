@@ -7,17 +7,19 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+
+	"github.com/Justintime50/alchemist/src/general"
 )
 
 // Backup backs up your Homebrew instance
 func Backup() {
 	action := "backup"
-	alchemistBackupDir := setupDir(action)
-	setupLogging(alchemistBackupDir, action)
+	alchemistBackupDir := general.SetupDir(action)
+	general.SetupLogging(alchemistBackupDir, action)
 
 	fmt.Println("Alchemist is backing up brew...")
 
-	brewDoctor, brewDoctorErr := runCommand(exec.Command, "brew", []string{"doctor"})
+	brewDoctor, brewDoctorErr := general.RunCommand(exec.Command, "brew", []string{"doctor"})
 	if brewDoctor != nil {
 		log.Printf("brew doctor: %s", brewDoctor)
 	} else {
@@ -26,10 +28,10 @@ func Backup() {
 		os.Exit(1)
 	}
 
-	packageList, _ := runCommand(exec.Command, "brew", []string{"list", "--formula"})
+	packageList, _ := general.RunCommand(exec.Command, "brew", []string{"list", "--formula"})
 	packages := generatePackageScriptCommands(packageList)
 
-	caskList, _ := runCommand(exec.Command, "brew", []string{"list", "--cask"})
+	caskList, _ := general.RunCommand(exec.Command, "brew", []string{"list", "--cask"})
 	casks := generateCaskScriptCommands(caskList)
 
 	createScriptFile(packages, alchemistBackupDir+"/restore-brew-packages.sh")

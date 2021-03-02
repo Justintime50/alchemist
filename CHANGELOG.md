@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.2.0 (2021-03-01)
+
+* Add support for `choco` on `Windows`
+* Alchemist now detects which OS you're running on and changes its logic accordingly
+
 ## v2.1.0 (2021-02-18)
 
 * Completely overhauled the app's modules by combining update/backup modules into a new `brew` module in preperation for adding `Choco` support on Windows

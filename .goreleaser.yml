@@ -2,6 +2,7 @@ builds:
   - goos:
       - linux
       - darwin
+      - windows
 
 brews:
   - tap:
@@ -9,7 +10,7 @@ brews:
       name: homebrew-formulas
     folder: formula
     homepage: "https://github.com/Justintime50/alchemist"
-    description: "Update, backup, and administer your Homebrew instance"
+    description: "Update, backup, and administer your Homebrew or Chocolatey instances"
     commit_author:
       name: Justintime50
       email: 39606064+Justintime50@users.noreply.github.com
