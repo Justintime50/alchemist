@@ -27,7 +27,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: "1.15"
+          go-version: "1.16"
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Run unit tests
@@ -45,8 +45,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
-        go: [1.14, 1.15]
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        go: [1.14, 1.15, 1.16]
     steps:
       - name: Set up Go
         uses: actions/setup-go@v2
@@ -55,4 +55,4 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Build
-        run: make build
+        run: go build -o dist/alchemist

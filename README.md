@@ -2,7 +2,7 @@
 
 # Alchemist
 
-Update, backup, and administer your Homebrew instance.
+Update, backup, and administer your Homebrew or Chocolatey instance.
 
 [![Build Status](https://github.com/Justintime50/alchemist/workflows/build/badge.svg)](https://github.com/Justintime50/alchemist/actions)
 [![Coverage Status](https://coveralls.io/repos/github/Justintime50/alchemist/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/alchemist?branch=main)
@@ -17,13 +17,15 @@ Update, backup, and administer your Homebrew instance.
 
 ## Alchemist Backup
 
-Alchemist can backup your entire Homebrew instance. It does this by retrieving the list of Homebrew packages and casks and creating shell scripts that can be run to restore your entire Homebrew instance.
+Alchemist can backup your entire Homebrew (macOS and Linux) or Chocolatey (Windows) instance. It does this by retrieving the list of Homebrew packages and casks and creating shell scripts that can be run to restore your entire Homebrew instance.
 
 ```bash
 alchemist --backup
 ```
 
 ## Alchemist Update
+
+**macOS and Linux**
 
 Alchemist automates the entire Homebrew update process including:
 
@@ -33,11 +35,17 @@ Alchemist automates the entire Homebrew update process including:
 1. Cleaning up old/stale taps and formula
 1. Checking for problems with your Homebrew instance
 
+**Windows**
+
+Alchemist will update all of your packages:
+
 ```bash
 alchemist --update
 ```
 
 ## Install
+
+**macOS and Linux**
 
 ```bash
 # Setup the tap
@@ -46,6 +54,10 @@ brew tap justintime50/formulas
 # Install the tool
 brew install alchemist
 ```
+
+**Windows**
+
+Download the Windows binary from the [https://github.com/Justintime50/alchemist/releases](releases page).
 
 ## Usage
 

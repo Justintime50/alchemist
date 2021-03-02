@@ -1,4 +1,4 @@
-package brew
+package general
 
 import (
 	"bytes"
@@ -10,8 +10,8 @@ import (
 	"github.com/natefinch/lumberjack"
 )
 
-// runCommand runs a shell command
-func runCommand(cmdContext mockcmd.ExecContext, command string, args []string) (*bytes.Buffer, error) {
+// RunCommand runs a shell command
+func RunCommand(cmdContext mockcmd.ExecContext, command string, args []string) (*bytes.Buffer, error) {
 	cmd := cmdContext(command, args...)
 	var out bytes.Buffer
 	var stderr bytes.Buffer
@@ -25,8 +25,8 @@ func runCommand(cmdContext mockcmd.ExecContext, command string, args []string) (
 	return &out, nil
 }
 
-// setupDir gets the user's home dir and appends the alchemist dir to it
-func setupDir(dir string) string {
+// SetupDir gets the user's home dir and appends the alchemist dir to it
+func SetupDir(dir string) string {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
 		panic(err)
@@ -37,8 +37,8 @@ func setupDir(dir string) string {
 	return alchemistUpdateDir
 }
 
-// setupLogging sets up logging
-func setupLogging(dir string, action string) string {
+// SetupLogging sets up logging
+func SetupLogging(dir string, action string) string {
 	logPath := dir + "/alchemist-" + action + ".log"
 	log.SetOutput(&lumberjack.Logger{
 		Filename:   logPath,
