@@ -5,18 +5,20 @@ import (
 	"log"
 	"os"
 	"os/exec"
+
+	"github.com/Justintime50/alchemist/src/general"
 )
 
 // Update updates your Chocolatey instance
 func Update() {
 	action := "update"
-	alchemistUpdateDir := setupDir(action)
-	setupLogging(alchemistUpdateDir, action)
+	alchemistUpdateDir := general.SetupDir(action)
+	general.SetupLogging(alchemistUpdateDir, action)
 
 	fmt.Println("Alchemist is updating choco...")
 	fmt.Println("This could take some time.")
 
-	update, updateErr := runCommand(exec.Command, "choco", []string{"upgrade", "all", "-y"})
+	update, updateErr := general.RunCommand(exec.Command, "choco", []string{"upgrade", "all", "-y"})
 	if update != nil {
 		fmt.Println("Alchemist updated choco!")
 		log.Printf("choco update: %s", update)

@@ -1,6 +1,6 @@
 module github.com/Justintime50/alchemist
 
-go 1.15
+go 1.16
 
 require (
 	github.com/BurntSushi/toml v0.3.1 // indirect

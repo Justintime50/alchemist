@@ -1,4 +1,4 @@
-package brew
+package general
 
 import (
 	"os"
@@ -8,19 +8,19 @@ import (
 )
 
 func TestSetupDir(t *testing.T) {
-	setupDir := setupDir("mock-directory")
+	setupDir := SetupDir("mock-directory")
 	if setupDir == "/alchemist/backup" {
 		t.Errorf("setupDir did not concatenate the homedir to the app path, got: %s", setupDir)
 	}
 }
 
 func TestRunCommandSuccess(t *testing.T) {
-	stdout, err := runCommand(mockcmd.MockExecSuccess, "mock-command", []string{"mock", "args"})
+	stdout, err := RunCommand(mockcmd.MockExecSuccess, "mock-command", []string{"mock", "args"})
 	mockcmd.Success(t, stdout, err)
 }
 
 func TestRunCommandFailure(t *testing.T) {
-	_, err := runCommand(mockcmd.MockExecFailure, "mock-command", []string{"mock", "args"})
+	_, err := RunCommand(mockcmd.MockExecFailure, "mock-command", []string{"mock", "args"})
 	mockcmd.Fail(t, err)
 }
 
