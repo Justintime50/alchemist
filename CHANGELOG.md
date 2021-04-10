@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.2.1 (2021-04-09)
+
+* Fixes a bug where we left a mocked directory on disk (closes #6)
+* Fixes a bug in the `TestSetupDir` test that would assert the wrong value
+
 ## v2.2.0 (2021-03-01)
 
 * Add support for `choco` on `Windows`
