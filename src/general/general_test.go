@@ -9,9 +9,12 @@ import (
 
 func TestSetupDir(t *testing.T) {
 	setupDir := SetupDir("mock-directory")
-	if setupDir == "/alchemist/backup" {
+	if setupDir == "/alchemist/mock-directory" {
 		t.Errorf("setupDir did not concatenate the homedir to the app path, got: %s", setupDir)
 	}
+	// Tear down the mocked directory
+	// TODO: in a perfect world, we'd actually mock this and not commit to disk and remove
+	os.Remove(setupDir)
 }
 
 func TestRunCommandSuccess(t *testing.T) {
