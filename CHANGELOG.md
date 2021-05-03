@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v3.0.0 (TODO)
+
+* Replaces `restore-packages.sh` and `restore-casks.sh` with a single `Brewfile` which also now includes `taps`
+
 ## v2.2.1 (2021-04-09)
 
 * Fixes a bug where we left a mocked directory on disk (closes #6)

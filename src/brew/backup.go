@@ -23,66 +23,89 @@ func Backup() {
 	if brewDoctor != nil {
 		log.Printf("brew doctor: %s", brewDoctor)
 	} else {
-		fmt.Println("Alchemist checked with brew doctor, you need to fix your Homebrew first before it can be backed up!")
+		fmt.Println("Alchemist checked with brew doctor, you need to fix your Homebrew instance before it can be backed up!")
 		log.Printf("brew update: %s", brewDoctorErr)
 		os.Exit(1)
 	}
 
+	tapList, _ := general.RunCommand(exec.Command, "brew", []string{"tap"})
+	taps := generateTapList(tapList)
+
 	packageList, _ := general.RunCommand(exec.Command, "brew", []string{"list", "--formula"})
-	packages := generatePackageScriptCommands(packageList)
+	packages := generatePackageList(packageList)
 
 	caskList, _ := general.RunCommand(exec.Command, "brew", []string{"list", "--cask"})
-	casks := generateCaskScriptCommands(caskList)
+	casks := generateCaskList(caskList)
 
-	createScriptFile(packages, alchemistBackupDir+"/restore-brew-packages.sh")
-	createScriptFile(casks, alchemistBackupDir+"/restore-brew-casks.sh")
+	var brewfileContent []string
+	brewfileContent = append(taps)
+	brewfileContent = append(packages)
+	brewfileContent = append(casks)
+
+	createBrewfile(brewfileContent, alchemistBackupDir+"/Brewfile")
 
 	fmt.Println("Alchemist is finished backing up brew!")
 }
 
-// generatePackageScriptCommands creates a script file containing commands to install all your brew packages
-func generatePackageScriptCommands(brewPackageList *bytes.Buffer) []string {
+// generateTapList creates a list of brew taps
+func generateTapList(brewTapList *bytes.Buffer) []string {
+	brewTapListString := brewTapList.String()
+	tapList := strings.Fields(brewTapListString)
+
+	var tapListArray []string
+	tapListArray = append(tapListArray, "# Taps")
+	for i := range tapList {
+		tapName := tapList[i]
+		brewInstallCommand := fmt.Sprintf("%s \"%s\"", "tap", tapName)
+		tapListArray = append(tapListArray, brewInstallCommand)
+	}
+
+	return tapListArray
+}
+
+// generatePackageList creates a list of brew packages
+func generatePackageList(brewPackageList *bytes.Buffer) []string {
 	brewPackageListString := brewPackageList.String()
 	packageList := strings.Fields(brewPackageListString)
 
 	var packageListArray []string
-	packageListArray = append(packageListArray, "#!/bin/sh")
+	packageListArray = append(packageListArray, "# Packages")
 	for i := range packageList {
 		packageName := packageList[i]
-		brewInstallCommand := fmt.Sprintf("%s %s", "brew install", packageName)
+		brewInstallCommand := fmt.Sprintf("%s \"%s\"", "brew", packageName)
 		packageListArray = append(packageListArray, brewInstallCommand)
 	}
 
 	return packageListArray
 }
 
-// generateCaskScriptCommands creates a script file containing commands to install all your brew casks
-func generateCaskScriptCommands(brewCaskList *bytes.Buffer) []string {
+// generateCaskList creates a list of brew casks
+func generateCaskList(brewCaskList *bytes.Buffer) []string {
 	brewCaskListString := brewCaskList.String()
 	caskList := strings.Fields(brewCaskListString)
 
 	var caskListArray []string
-	caskListArray = append(caskListArray, "#!/bin/sh")
+	caskListArray = append(caskListArray, "# Casks\ncask_args appdir: \"~/Applications\", require_sha: true")
 	for i := range caskList {
 		caskName := caskList[i]
-		brewInstallCommand := fmt.Sprintf("%s %s", "brew install --cask", caskName)
+		brewInstallCommand := fmt.Sprintf("%s \"%s\"", "cask", caskName)
 		caskListArray = append(caskListArray, brewInstallCommand)
 	}
 
 	return caskListArray
 }
 
-// createScriptFile creates a script file from an array of commands
-func createScriptFile(commands []string, filename string) {
-	packageFile, err := os.Create(filename)
+// createBrewfile creates a Brewfile from an array of commands
+func createBrewfile(commands []string, filename string) {
+	brewfile, err := os.Create(filename)
 	if err != nil {
 		panic(err)
 	}
-	defer packageFile.Close()
+	defer brewfile.Close()
 
 	for i := range commands {
 		command := commands[i]
-		_, _ = packageFile.WriteString(fmt.Sprintf("%s\n", command))
+		_, _ = brewfile.WriteString(fmt.Sprintf("%s\n", command))
 	}
 
 	err = exec.Command("chmod", "+x", filename).Run()
