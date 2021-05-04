@@ -17,11 +17,13 @@ Update, backup, and administer your Homebrew or Chocolatey instance.
 
 ## Alchemist Backup
 
-Alchemist can backup your entire Homebrew (macOS and Linux) or Chocolatey (Windows) instance. It does this by retrieving the list of Homebrew packages and casks and creating shell scripts that can be run to restore your entire Homebrew instance.
+Alchemist can backup your entire Homebrew (macOS and Linux) or Chocolatey (Windows) instance. It does this by retrieving the list of installed packages and creating a script that can be run to restore your entire Homebrew or Chocolatey instance.
 
 ```bash
 alchemist --backup
 ```
+
+If you run into troubles backing up your Homebrew instance, it's recommended to try running Alcehmist with the `--update` flag first.
 
 ## Alchemist Update
 
@@ -37,7 +39,7 @@ Alchemist automates the entire Homebrew update process including:
 
 **Windows**
 
-Alchemist will update all of your packages:
+Alchemist will update all of your Chocolatey packages:
 
 ```bash
 alchemist --update
@@ -67,17 +69,19 @@ Alchemist saves logs to `~/alchemist/update/alchemist-update.log`. Logs by defau
 
 **Restore Scripts**
 
-Scripts generated from the backup functionality of Alchemist live at `~/alchemist/backup/restore-brew-package.sh`. Simply make the script executable and run it to reinstall all of your brew packages (eg: `./restore-brew-package.sh`).
+Scripts generated from the backup functionality of Alchemist live at `~/alchemist/backup`. Simply run `brew bundle --file path/to/Brewfile` or `path/to/restore-choco-packages.bat` file to restore your packages.
 
 ```
 Usage:
     alchemist --update
 
 Options:
-    -backup
+    --backup
         Backup your Homebrew instance.
-    -update
+    --update
         Update your Homebrew instance.
+    --force
+        Forces actions such as backing up even when there are errors. (Brew only)
 ```
 
 ## Development
