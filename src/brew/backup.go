@@ -12,7 +12,7 @@ import (
 )
 
 // Backup backs up your Homebrew instance
-func Backup() {
+func Backup(force bool) {
 	action := "backup"
 	alchemistBackupDir := general.SetupDir(action)
 	general.SetupLogging(alchemistBackupDir, action)
@@ -20,11 +20,11 @@ func Backup() {
 	fmt.Println("Alchemist is backing up brew...")
 
 	brewDoctor, brewDoctorErr := general.RunCommand(exec.Command, "brew", []string{"doctor"})
-	if brewDoctor != nil {
+	if brewDoctor != nil || force == true {
 		log.Printf("brew doctor: %s", brewDoctor)
 	} else {
 		fmt.Println("Alchemist checked with brew doctor, you need to fix your Homebrew instance before it can be backed up!")
-		log.Printf("brew update: %s", brewDoctorErr)
+		log.Printf("brew doctor: %s", brewDoctorErr)
 		os.Exit(1)
 	}
 
@@ -37,10 +37,8 @@ func Backup() {
 	caskList, _ := general.RunCommand(exec.Command, "brew", []string{"list", "--cask"})
 	casks := generateCaskList(caskList)
 
-	var brewfileContent []string
-	brewfileContent = append(taps)
-	brewfileContent = append(packages)
-	brewfileContent = append(casks)
+	brewfileContent := append(taps, packages...)
+	brewfileContent = append(brewfileContent, casks...)
 
 	createBrewfile(brewfileContent, alchemistBackupDir+"/Brewfile")
 

@@ -23,6 +23,8 @@ Alchemist can backup your entire Homebrew (macOS and Linux) or Chocolatey (Windo
 alchemist --backup
 ```
 
+If you run into troubles backing up your Homebrew instance, it's recommended to try running Alcehmist with the `--update` flag first.
+
 ## Alchemist Update
 
 **macOS and Linux**
@@ -78,6 +80,8 @@ Options:
         Backup your Homebrew instance.
     --update
         Update your Homebrew instance.
+    --force
+        Forces actions such as backing up even when there are errors. (Brew only)
 ```
 
 ## Development

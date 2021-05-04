@@ -30,7 +30,7 @@ func TestGeneratePackageList(t *testing.T) {
 
 func TestGenerateCaskList(t *testing.T) {
 	mockCaskList := bytes.NewBufferString("cask1\ncask2")
-	wanted := []string{"# Casks", "cask \"cask1\"", "cask \"cask2\""}
+	wanted := []string{"# Casks\ncask_args appdir: \"~/Applications\", require_sha: true", "cask \"cask1\"", "cask \"cask2\""}
 	output := generateCaskList(mockCaskList)
 	for i := range output {
 		if output[i] != wanted[i] {
