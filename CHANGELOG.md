@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v3.0.0 (2021-05-04)
+
+* Replaces `restore-brew-packages.sh` and `restore-brew-casks.sh` with a single `Brewfile` which also now includes all installed `taps`
+* Adds `--force` flag to force Brew backups even if errors are present in `brew doctor`
+
 ## v2.2.1 (2021-04-09)
 
 * Fixes a bug where we left a mocked directory on disk (closes #6)

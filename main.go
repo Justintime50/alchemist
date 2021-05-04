@@ -30,13 +30,14 @@ func main() {
 	} else {
 		brewUpdate := flag.Bool("update", false, "Update your Homebrew instance.")
 		brewBackup := flag.Bool("backup", false, "Backup your Homebrew instance.")
+		force := flag.Bool("force", false, "Forces actions such as backing up even when there are errors.")
 		flag.Parse()
 
 		if *brewUpdate {
 			brew.Update()
 			return
 		} else if *brewBackup {
-			brew.Backup()
+			brew.Backup(*force)
 			return
 		}
 
