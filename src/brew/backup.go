@@ -20,7 +20,7 @@ func Backup(force bool) {
 	fmt.Println("Alchemist is backing up brew...")
 
 	brewDoctor, brewDoctorErr := general.RunCommand(exec.Command, "brew", []string{"doctor"})
-	if brewDoctor != nil || force == true {
+	if brewDoctor != nil || force {
 		log.Printf("brew doctor: %s", brewDoctor)
 	} else {
 		fmt.Println("Alchemist checked with brew doctor, you need to fix your Homebrew instance before it can be backed up!")
