@@ -69,7 +69,7 @@ Alchemist saves logs to `~/alchemist/update/alchemist-update.log`. Logs by defau
 
 **Restore Scripts**
 
-Scripts generated from the backup functionality of Alchemist live at `~/alchemist/backup`. Simply run `brew bundle --file path/to/Brewfile` or `path/to/restore-choco-packages.bat` file to restore your packages.
+Scripts generated from the backup functionality of Alchemist live at `~/alchemist/backup`. Simply run `brew bundle --file path/to/Brewfile` or `path/to/restore-choco-packages.bat` to restore your packages.
 
 ```
 Usage:
