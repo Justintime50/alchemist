@@ -9,7 +9,7 @@ Update, backup, and administer your Homebrew or Chocolatey instance.
 [![Release](https://img.shields.io/github/v/release/Justintime50/alchemist)](https://github.com/Justintime50/alchemist/releases)
 [![Licence](https://img.shields.io/github/license/justintime50/alchemist)](LICENSE)
 
-<img src="assets/showcase.png" alt="Showcase">
+<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/alchemist/showcase.png" alt="Showcase">
 
 </div>
 
@@ -105,7 +105,3 @@ make coverage
 # Lint the project (requires golangci-lint be installed)
 make lint
 ```
-
-## Attribution
-
-* Icons made by <a href="https://www.flaticon.com/free-icon/chemist_2646063?term=chemist&related_id=2646063" title="ultimatearm">ultimatearm</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
