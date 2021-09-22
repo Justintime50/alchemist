@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v3.1.0 (2021-09-21)
+
+* Drops support for Go `1.15`
+* Targets Go `1.17`
+* Update dependencies
+
 ## v3.0.0 (2021-05-04)
 
 * Replaces `restore-brew-packages.sh` and `restore-brew-casks.sh` with a single `Brewfile` which also now includes all installed `taps`

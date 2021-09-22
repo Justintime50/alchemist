@@ -46,7 +46,7 @@ brew_backup() {
 
 make_packages_installable() {
     # Make scripts installable by appending the brew commands to the package names
-    # TODO: This usage of "sed" may not work on all flavors of Unix, replace if possible
+    # NOTE: This usage of "sed" assumes the BSD version is installed
     sed -i "" '3,$s/^/brew install /' "$PACKAGE_SCRIPT_LOCATION"
     sed -i "" '3,$s/^/brew cask install /' "$CASK_SCRIPT_LOCATION"
 }
