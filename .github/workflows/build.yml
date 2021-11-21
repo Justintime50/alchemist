@@ -48,7 +48,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-        go: [1.15, 1.16, 1.17]
+        go: ["1.15", "1.16", "1.17"]
     steps:
       - name: Set up Go
         uses: actions/setup-go@v2

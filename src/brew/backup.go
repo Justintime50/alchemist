@@ -83,7 +83,7 @@ func generateCaskList(brewCaskList *bytes.Buffer) []string {
 	caskList := strings.Fields(brewCaskListString)
 
 	var caskListArray []string
-	caskListArray = append(caskListArray, "# Casks\ncask_args appdir: \"~/Applications\", require_sha: true")
+	caskListArray = append(caskListArray, "# Casks\ncask_args appdir: \"~/Applications\"")
 	for i := range caskList {
 		caskName := caskList[i]
 		brewInstallCommand := fmt.Sprintf("%s \"%s\"", "cask", caskName)
