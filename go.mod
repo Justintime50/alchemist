@@ -1,6 +1,6 @@
 module github.com/Justintime50/alchemist
 
-go 1.17
+go 1.16
 
 require (
 	github.com/justintime50/mockcmd v0.2.0

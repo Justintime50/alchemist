@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v3.1.2 (2021-12-09)
+
+* Adds back support for Go 1.16 which was previously removed in `3.1.0`
+
 ## v3.1.1 (2021-11-21)
 
 * No longer require `sha checksum` on cask installation as some casks didn't include them which would lead to items on your backup list not getting installed
