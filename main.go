@@ -6,8 +6,8 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/Justintime50/alchemist/src/brew"
-	"github.com/Justintime50/alchemist/src/choco"
+	"github.com/Justintime50/alchemist/v3/src/brew"
+	"github.com/Justintime50/alchemist/v3/src/choco"
 )
 
 // main function that accepts CLI args to invoke different functionality

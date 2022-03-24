@@ -8,7 +8,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/Justintime50/alchemist/src/general"
+	"github.com/Justintime50/alchemist/v3/src/general"
 )
 
 // Backup backs up your Homebrew instance
