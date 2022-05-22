@@ -82,7 +82,7 @@ Options:
         Update your Homebrew instance.
     --force
         Forces actions such as backing up even when there are errors. (Brew only)
-    -greedy
+    --greedy
         Force updates to casks that have auto-update capabilities in their respective UIs.
 ```
 
