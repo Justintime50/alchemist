@@ -31,10 +31,11 @@ func main() {
 		brewUpdate := flag.Bool("update", false, "Update your Homebrew instance.")
 		brewBackup := flag.Bool("backup", false, "Backup your Homebrew instance.")
 		force := flag.Bool("force", false, "Forces actions such as backing up even when there are errors.")
+		greedy := flag.Bool("greedy", false, "Force updates to casks that have auto-update capabilities in their respective UIs.")
 		flag.Parse()
 
 		if *brewUpdate {
-			brew.Update()
+			brew.Update(*greedy)
 			return
 		} else if *brewBackup {
 			brew.Backup(*force)

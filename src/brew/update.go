@@ -5,12 +5,13 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/Justintime50/alchemist/v3/src/general"
 )
 
 // Update updates your Homebrew instance
-func Update() {
+func Update(greedy bool) {
 	action := "update"
 	alchemistUpdateDir := general.SetupDir(action)
 	general.SetupLogging(alchemistUpdateDir, action)
@@ -40,8 +41,13 @@ func Update() {
 	}
 
 	fmt.Println("Alchemist is upgrading brew casks...")
-	upgradeCasks, upgradeCasksErr := general.RunCommand(exec.Command, "brew", []string{"upgrade", "--cask"})
-	if upgradeCasks != nil {
+	upgradeCaskCommand := []string{"upgrade", "--cask"}
+	if greedy {
+		upgradeCaskCommand = []string{"upgrade", "--cask", "--greedy"}
+	}
+	upgradeCasks, upgradeCasksErr := general.RunCommand(exec.Command, "brew", upgradeCaskCommand)
+	// Skip if no errors or if the cask cannot be updated due to having a manual installer
+	if upgradeCasks != nil || strings.Contains(fmt.Sprint(upgradeCasksErr), "installer manual") {
 		fmt.Println("Alchemist upgraded brew casks!")
 		log.Printf("brew upgrade --cask: %s", upgradeCasks)
 	} else {

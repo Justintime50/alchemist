@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v3.2.0 (2022-05-21)
+
+- Adds a `--greedy` CLI flag so casks can be updated even if they have a UI "auto-update" feature (helps keep Homebrew app versions synced better with what they actually are)
+
 ## v3.1.3 (2022-03-23)
 
 - Corrects project namespace by appending `/v3`
