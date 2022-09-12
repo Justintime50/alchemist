@@ -27,7 +27,7 @@ If you run into troubles backing up your Homebrew instance, it's recommended to 
 
 ## Alchemist Update
 
-**macOS and Linux**
+### macOS and Linux
 
 Alchemist automates the entire Homebrew update process including:
 
@@ -37,7 +37,7 @@ Alchemist automates the entire Homebrew update process including:
 1. Cleaning up old/stale taps and formula
 1. Checking for problems with your Homebrew instance
 
-**Windows**
+### Windows
 
 Alchemist will update all of your Chocolatey packages:
 
@@ -47,7 +47,7 @@ alchemist --update
 
 ## Install
 
-**macOS and Linux**
+### macOS and Linux
 
 ```bash
 # Setup the tap
@@ -57,17 +57,17 @@ brew tap justintime50/formulas
 brew install alchemist
 ```
 
-**Windows**
+### Windows
 
-Download the Windows binary from the [https://github.com/Justintime50/alchemist/releases](releases page).
+Download the Windows binary from the [releases page](https://github.com/Justintime50/alchemist/releases).
 
 ## Usage
 
-**Logs**
+### Logs
 
 Alchemist saves logs to `~/alchemist/update/alchemist-update.log`. Logs by default are kept on the system for `90 days` and are automatically rotated for you once their size exceeds 1mb or the logs become older than 90 days.
 
-**Restore Scripts**
+### Restore Scripts
 
 Scripts generated from the backup functionality of Alchemist live at `~/alchemist/backup`. Simply run `brew bundle --file path/to/Brewfile` or `path/to/restore-choco-packages.bat` to restore your packages.
 
