@@ -27,12 +27,11 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: "1.18"
+          go-version: "1.19"
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Run unit tests
-        run: |
-          go test -race -covermode atomic -coverprofile=covprofile ./...
+        run: make coverage
       - name: Install goveralls
         if: github.ref == 'refs/heads/main'
         env:
@@ -48,7 +47,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-        go: ["1.16", "1.17", "1.18"]
+        go: ["1.16", "1.17", "1.18", "1.19"]
     steps:
       - name: Set up Go
         uses: actions/setup-go@v3
