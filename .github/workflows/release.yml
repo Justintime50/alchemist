@@ -3,18 +3,18 @@ name: release
 on:
   push:
     tags:
-      - "*"
+      - '*'
 
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
         with:
-          go-version: "1.20"
+          go-version: '1.21'
       - name: Run goreleaser
         uses: goreleaser/goreleaser-action@v2
         with:
