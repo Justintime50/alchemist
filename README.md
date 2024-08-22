@@ -71,7 +71,7 @@ Alchemist saves logs to `~/alchemist/update/alchemist-update.log`. Logs by defau
 
 Scripts generated from the backup functionality of Alchemist live at `~/alchemist/backup`. Simply run `brew bundle --file path/to/Brewfile` or `path/to/restore-choco-packages.bat` to restore your packages.
 
-```
+```text
 Usage:
     alchemist --update
 
@@ -88,22 +88,7 @@ Options:
 
 ## Development
 
-```bash
-# Build the project
-make build
-
-# Install the project globally from source
-make install
-
-# Clean the executables
-make clean
-
-# Test the project
-make test
-
-## Get test coverage
-make coverage
-
-# Lint the project (requires golangci-lint be installed)
-make lint
+```shell
+# Get a comprehensive list of development tools
+just --list
 ```

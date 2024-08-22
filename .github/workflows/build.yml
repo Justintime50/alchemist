@@ -3,35 +3,39 @@ name: build
 on: [push, pull_request]
 
 jobs:
-  shellcheck:
-    name: Shellcheck
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@1.0.0
-        with:
-          scandir: 'legacy'
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
       - name: Run Golangci Linter
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: v1.60.1
   test:
-    name: Test with Coverage
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        go: ['1.16', '1.17', '1.18', '1.19', '1.20', '1.21', '1.22', '1.23']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v2
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Build and test
+        run: just build test
+  coverage:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go
-        uses: actions/setup-go@v5
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v2
+      - uses: actions/setup-go@v5
         with:
-          go-version: '1.21'
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      - name: Run unit tests
-        run: make coverage
+          go-version: '1.23'
+      - name: Generate coverage report
+        run: just coverage
       - name: Install goveralls
         if: github.ref == 'refs/heads/main'
         env:
@@ -42,18 +46,3 @@ jobs:
         env:
           COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: goveralls -coverprofile=covprofile -service=github
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        go: ['1.16', '1.17', '1.18', '1.19', '1.20', '1.21']
-    steps:
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ matrix.go }}
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      - name: Build
-        run: go build -o dist/alchemist

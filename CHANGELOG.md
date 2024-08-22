@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v3.3.0 (2024-08-22)
+
+- Adds support for Go `1.22` and `1.23`
+
 ## v3.2.0 (2022-05-21)
 
 - Adds a `--greedy` CLI flag so casks can be updated even if they have a UI "auto-update" feature (helps keep Homebrew app versions synced better with what they actually are)

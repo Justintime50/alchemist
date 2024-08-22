@@ -19,7 +19,7 @@ func RunCommand(cmdContext mockcmd.ExecContext, command string, args []string) (
 	cmd.Stderr = &stderr
 	err := cmd.Run()
 	if err != nil {
-		return nil, fmt.Errorf(fmt.Sprint(err) + ": " + stderr.String())
+		return nil, fmt.Errorf("%v: %s", err, stderr.String())
 	}
 
 	return &out, nil
