@@ -27,22 +27,19 @@ jobs:
       - name: Build and test
         run: just build test
   coverage:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
       - uses: actions/setup-go@v5
         with:
-          go-version: '1.23'
+          go-version: '1.22' # Fails on newer go versions
       - name: Generate coverage report
         run: just coverage
       - name: Install goveralls
-        if: github.ref == 'refs/heads/main'
-        env:
-          GO111MODULE: off
         run: go get github.com/mattn/goveralls
       - name: Send coverage
-        if: github.ref == 'refs/heads/main'
         env:
           COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: goveralls -coverprofile=covprofile -service=github
