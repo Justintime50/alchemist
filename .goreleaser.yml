@@ -1,3 +1,5 @@
+version: 2
+
 builds:
   - goos:
     - linux
@@ -5,10 +7,10 @@ builds:
     - windows
 
 brews:
-  - tap:
+  - repository:
       owner: Justintime50
       name: homebrew-formulas
-    folder: formula
+    directory: formula
     homepage: "https://github.com/Justintime50/alchemist"
     description: "Update, backup, and administer your Homebrew or Chocolatey instances"
     commit_author:
