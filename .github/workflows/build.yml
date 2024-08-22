@@ -39,6 +39,8 @@ jobs:
         run: just coverage
       - name: Install goveralls
         run: go get github.com/mattn/goveralls
+        env:
+          GO111MODULE: off
       - name: Send coverage
         env:
           COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
