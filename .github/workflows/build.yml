@@ -34,7 +34,7 @@ jobs:
       - uses: extractions/setup-just@v2
       - uses: actions/setup-go@v5
         with:
-          go-version: '1.22' # Fails on newer go versions
+          go-version: '1.21' # Fails on newer go versions
       - name: Generate coverage report
         run: just coverage
       - name: Install goveralls
