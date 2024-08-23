@@ -8,8 +8,7 @@ build:
 
 # Clean the project
 clean:
-    rm -rf vendor
-    rm {{DIST_PATH}}
+    rm -rf vendor {{DIST_PATH}}
 
 # Get test coverage and open it in a browser
 coverage: 
