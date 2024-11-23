@@ -10,7 +10,7 @@ brews:
   - repository:
       owner: Justintime50
       name: homebrew-formulas
-    directory: formula
+    directory: Formula
     homepage: "https://github.com/Justintime50/alchemist"
     description: "Update, backup, and administer your Homebrew or Chocolatey instances"
     commit_author:
