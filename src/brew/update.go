@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"runtime"
 	"strings"
 
 	"github.com/Justintime50/alchemist/v3/src/general"
@@ -40,20 +41,22 @@ func Update(greedy bool) {
 		os.Exit(1)
 	}
 
-	fmt.Println("Alchemist is upgrading brew casks...")
-	upgradeCaskCommand := []string{"upgrade", "--cask"}
-	if greedy {
-		upgradeCaskCommand = []string{"upgrade", "--cask", "--greedy"}
-	}
-	upgradeCasks, upgradeCasksErr := general.RunCommand(exec.Command, "brew", upgradeCaskCommand)
-	// Skip if no errors or if the cask cannot be updated due to having a manual installer
-	if upgradeCasks != nil || strings.Contains(fmt.Sprint(upgradeCasksErr), "installer manual") {
-		fmt.Println("Alchemist upgraded brew casks!")
-		log.Printf("brew upgrade --cask: %s", upgradeCasks)
-	} else {
-		fmt.Println("Alchemist could not upgrade brew casks, please see logs for details.")
-		log.Printf("brew upgrade --cask: %s", upgradeCasksErr)
-		os.Exit(1)
+	if runtime.GOOS == "darwin" {
+		fmt.Println("Alchemist is upgrading brew casks...")
+		upgradeCaskCommand := []string{"upgrade", "--cask"}
+		if greedy {
+			upgradeCaskCommand = []string{"upgrade", "--cask", "--greedy"}
+		}
+		upgradeCasks, upgradeCasksErr := general.RunCommand(exec.Command, "brew", upgradeCaskCommand)
+		// Skip if no errors or if the cask cannot be updated due to having a manual installer
+		if upgradeCasks != nil || strings.Contains(fmt.Sprint(upgradeCasksErr), "installer manual") {
+			fmt.Println("Alchemist upgraded brew casks!")
+			log.Printf("brew upgrade --cask: %s", upgradeCasks)
+		} else {
+			fmt.Println("Alchemist could not upgrade brew casks, please see logs for details.")
+			log.Printf("brew upgrade --cask: %s", upgradeCasksErr)
+			os.Exit(1)
+		}
 	}
 
 	fmt.Println("Alchemist is cleaning up brew...")

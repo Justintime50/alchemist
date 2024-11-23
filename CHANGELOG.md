@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v3.3.1 (2024-11-22)
+
+- Only upgrade Casks on macOS since they aren't supported on Linux
+
 ## v3.3.0 (2024-08-22)
 
 - Adds support for Go `1.22` and `1.23`
