@@ -15,36 +15,6 @@ Update, backup, and administer your Homebrew or Chocolatey instance.
 
 > Bubble bubble, toil and brew...
 
-## Alchemist Backup
-
-Alchemist can backup your entire Homebrew (macOS and Linux) or Chocolatey (Windows) instance. It does this by retrieving the list of installed packages and creating a script that can be run to restore your entire Homebrew or Chocolatey instance.
-
-```bash
-alchemist --backup
-```
-
-If you run into troubles backing up your Homebrew instance, it's recommended to try running Alcehmist with the `--update` flag first.
-
-## Alchemist Update
-
-### macOS and Linux
-
-Alchemist automates the entire Homebrew update process including:
-
-1. Updating available taps and formula references
-1. Upgrading packages
-1. Upgrading casks
-1. Cleaning up old/stale taps and formula
-1. Checking for problems with your Homebrew instance
-
-### Windows
-
-Alchemist will update all of your Chocolatey packages:
-
-```bash
-alchemist --update
-```
-
 ## Install
 
 ### macOS and Linux
@@ -62,6 +32,36 @@ brew install alchemist
 Download the Windows binary from the [releases page](https://github.com/Justintime50/alchemist/releases).
 
 ## Usage
+
+## Alchemist Backup
+
+Alchemist can backup your entire Homebrew (macOS and Linux) or Chocolatey (Windows) instance. It does this by retrieving the list of installed packages and creating a script that can be run to restore your entire Homebrew or Chocolatey instance.
+
+```bash
+alchemist --backup
+```
+
+If you run into troubles backing up your Homebrew instance, it's recommended to try running Alcehmist with the `--update` flag first.
+
+## Alchemist Update
+
+### macOS and Linux
+
+Alchemist automates the entire Homebrew update process including:
+
+1. Updating available taps and formula references
+1. Upgrading formula
+1. Upgrading casks (macOS)
+1. Cleaning up old/stale taps and formula
+1. Checking for problems with your Homebrew instance
+
+### Windows
+
+Alchemist will update all of your Chocolatey packages:
+
+```bash
+alchemist --update
+```
 
 ### Logs
 
