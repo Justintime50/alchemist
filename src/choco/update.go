@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/Justintime50/alchemist/v3/src/general"
+	"github.com/Justintime50/alchemist/v4/src/general"
 )
 
 // Update updates your Chocolatey instance

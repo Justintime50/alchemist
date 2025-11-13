@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/justintime50/mockcmd/mockcmd"
+	"github.com/justintime50/mockcmd"
 	"github.com/natefinch/lumberjack"
 )
 

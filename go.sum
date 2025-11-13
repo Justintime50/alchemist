@@ -1,7 +1,7 @@
-github.com/BurntSushi/toml v1.3.2 h1:o7IhLm0Msx3BaB+n3Ag7L8EVlByGnpq14C4YWiu/gL8=
-github.com/BurntSushi/toml v1.3.2/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
-github.com/justintime50/mockcmd v0.3.0 h1:ifEMnpeUHrnWulgDu3AzfehaWWGCsHj9zbGbabw+Czs=
-github.com/justintime50/mockcmd v0.3.0/go.mod h1:laf0jpehca2YLCiBUZZ508uc6Y1WLzT5Lqspg25KHoI=
+github.com/BurntSushi/toml v1.5.0 h1:W5quZX/G/csjUnuI8SUYlsHs9M38FC7znL0lIO+DvMg=
+github.com/BurntSushi/toml v1.5.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
+github.com/justintime50/mockcmd v0.4.0 h1:oyOnZ9xvys54TOalD5UICqSvTSg0fEL0LhpNSzmmCds=
+github.com/justintime50/mockcmd v0.4.0/go.mod h1:laf0jpehca2YLCiBUZZ508uc6Y1WLzT5Lqspg25KHoI=
 github.com/natefinch/lumberjack v2.0.0+incompatible h1:4QJd3OLAMgj7ph+yZTuX13Ld4UpgHp07nNdFX7mqFfM=
 github.com/natefinch/lumberjack v2.0.0+incompatible/go.mod h1:Wi9p2TTF5DG5oU+6YfsmYQpsTIOm0B1VNzQg9Mw6nPk=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=

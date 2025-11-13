@@ -6,22 +6,22 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
       - name: Run Golangci Linter
-        uses: golangci/golangci-lint-action@v6
+        uses: golangci/golangci-lint-action@v9
         with:
-          version: v1.60.1
+          version: v2.6.1
   test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-        go: ['1.16', '1.17', '1.18', '1.19', '1.20', '1.21', '1.22', '1.23']
+        go: ['1.16', '1.17', '1.18', '1.19', '1.20', '1.21', '1.22', '1.23', '1.24', '1.25']
     steps:
-      - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@v5
+      - uses: extractions/setup-just@v3
+      - uses: actions/setup-go@v6
         with:
           go-version: ${{ matrix.go }}
       - name: Build and test
@@ -30,18 +30,13 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@v5
+      - uses: extractions/setup-just@v3
+      - uses: actions/setup-go@v6
         with:
-          go-version: '1.21' # Fails on newer go versions
+          go-version: '1.25'
       - name: Generate coverage report
         run: just coverage
-      - name: Install goveralls
-        run: go get github.com/mattn/goveralls
-        env:
-          GO111MODULE: off
-      - name: Send coverage
-        env:
-          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: goveralls -coverprofile=covprofile -service=github
+      - uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

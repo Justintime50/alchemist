@@ -3,30 +3,20 @@ package brew
 import (
 	"bytes"
 	"fmt"
-	"log"
 	"os"
 	"os/exec"
 	"strings"
 
-	"github.com/Justintime50/alchemist/v3/src/general"
+	"github.com/Justintime50/alchemist/v4/src/general"
 )
 
 // Backup backs up your Homebrew instance
-func Backup(force bool) {
+func Backup() {
 	action := "backup"
 	alchemistBackupDir := general.SetupDir(action)
 	general.SetupLogging(alchemistBackupDir, action)
 
 	fmt.Println("Alchemist is backing up brew...")
-
-	brewDoctor, brewDoctorErr := general.RunCommand(exec.Command, "brew", []string{"doctor"})
-	if brewDoctor != nil || force {
-		log.Printf("brew doctor: %s", brewDoctor)
-	} else {
-		fmt.Println("Alchemist checked with brew doctor, you need to fix your Homebrew instance before it can be backed up!")
-		log.Printf("brew doctor: %s", brewDoctorErr)
-		os.Exit(1)
-	}
 
 	tapList, _ := general.RunCommand(exec.Command, "brew", []string{"tap"})
 	taps := generateTapList(tapList)

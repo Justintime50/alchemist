@@ -5,7 +5,7 @@
 Update, backup, and administer your Homebrew or Chocolatey instance.
 
 [![Build Status](https://github.com/Justintime50/alchemist/workflows/build/badge.svg)](https://github.com/Justintime50/alchemist/actions)
-[![Coverage Status](https://coveralls.io/repos/github/Justintime50/alchemist/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/alchemist?branch=main)
+[![Coverage Status](https://img.shields.io/codecov/c/github/justintime50/alchemist)](https://app.codecov.io/github/Justintime50/alchemist)
 [![Release](https://img.shields.io/github/v/release/Justintime50/alchemist)](https://github.com/Justintime50/alchemist/releases)
 [![Licence](https://img.shields.io/github/license/justintime50/alchemist)](LICENSE)
 
@@ -80,10 +80,8 @@ Options:
         Backup your Homebrew instance.
     --update
         Update your Homebrew instance.
-    --force
-        Forces actions such as backing up even when there are errors. (Brew only)
     --greedy
-        Force updates to casks that have auto-update capabilities in their respective UIs.
+        Greedily updates casks even if they have auto-update capabilities in their respective UIs.
 ```
 
 ## Development

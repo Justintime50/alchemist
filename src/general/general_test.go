@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/justintime50/mockcmd/mockcmd"
+	"github.com/justintime50/mockcmd"
 )
 
 func TestSetupDir(t *testing.T) {

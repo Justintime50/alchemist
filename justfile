@@ -12,11 +12,11 @@ clean:
 
 # Get test coverage and open it in a browser
 coverage: 
-    go clean -testcache && go test ./... -coverprofile=covprofile && go tool cover -html=covprofile
+    go clean -testcache && go test ./... -coverprofile=cover.out && go tool cover -html=cover.out
 
 # Install globally from source
 install:
-    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b {{GO_BIN}} v1.60.1
+    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b {{GO_BIN}} v2.6.1
     go mod vendor
 
 # Lint the project

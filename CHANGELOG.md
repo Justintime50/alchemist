@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v4.0.0 (2025-11-13)
+
+- Removes the `--force` flag and no longer checks with `brew doctor` before allowing a backup since all we do is list installed formula and save to a Brewfile anyway, checking with doctor was unecessary and slowed down this operation
+- Adds support for Go `1.24` and `1.25`
+- Bumps dependencies
+
 ## v3.3.1 (2024-11-22)
 
 - Only upgrade Casks on macOS since they aren't supported on Linux
