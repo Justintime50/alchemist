@@ -89,11 +89,11 @@ func createBrewfile(commands []string, filename string) {
 	if err != nil {
 		panic(err)
 	}
-	defer brewfile.Close()
+	defer func() { _ = brewfile.Close() }()
 
 	for i := range commands {
 		command := commands[i]
-		_, _ = brewfile.WriteString(fmt.Sprintf("%s\n", command))
+		_, _ = fmt.Fprintf(brewfile, "%s\n", command)
 	}
 
 	err = exec.Command("chmod", "+x", filename).Run()

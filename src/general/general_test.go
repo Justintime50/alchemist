@@ -14,7 +14,7 @@ func TestSetupDir(t *testing.T) {
 	}
 	// Tear down the mocked directory
 	// TODO: in a perfect world, we'd actually mock this and not commit to disk and remove
-	os.Remove(setupDir)
+	_ = os.Remove(setupDir)
 }
 
 func TestRunCommandSuccess(t *testing.T) {
@@ -32,7 +32,7 @@ func TestMockProcessSuccess(t *testing.T) {
 	if os.Getenv("GO_TEST_PROCESS") != "1" {
 		return
 	}
-	os.Stdout.WriteString("mocked Stdout")
+	_, _ = os.Stdout.WriteString("mocked Stdout")
 	os.Exit(0)
 }
 
